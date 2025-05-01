@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const onSubmit = async ({ link, referer, title, userAgent }: IForm) => {
     if (typeof window !== undefined) {
       try {
-        const result = `ffmpeg -user_agent "${userAgent}" -headers "referer: ${referer}" -i "${link}" -c copy "${title}.mp4"`;
+        const result = `ffmpeg -user_agent "${userAgent}" -headers "referer: ${referer}" -extension_picky 0 -i "${link}" -c copy "${title}.mp4"`;
         await window.navigator.clipboard.writeText(result);
         resetField("link");
         resetField("title");
